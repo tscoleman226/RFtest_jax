@@ -3,11 +3,11 @@
 A JAX-based Python port of the `RFtest` R package: permutation-based
 hypothesis tests for random forests.
 
-> **Note:** This implementation is intentionally written as a pure-JAX-style
-> library, but decision-tree induction uses Python control flow for tree
-> growth because the dynamic tree structure cannot be naturally expressed as a
-> single XLA graph. All numerical work—split search, prediction routing,
-> permutation sampling, and MSE aggregation—is done with JAX arrays and ops.
+> **Note:** Tree growth still uses Python control flow for the dynamic queue of
+> nodes, but the per-node split search and the full prediction pass are now
+> JIT-compiled JAX functions.  This avoids per-node recompilation and
+> unnecessary host-device synchronisations while keeping the tree structure
+> explicit.
 
 ## Installation
 
