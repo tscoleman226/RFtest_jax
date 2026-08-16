@@ -30,9 +30,13 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+plot = [
+    "matplotlib>=3.0",
+]
 dev = [
     "pytest>=7.0",
     "numpy",
+    "matplotlib>=3.0",
 ]
 
 [project.urls]

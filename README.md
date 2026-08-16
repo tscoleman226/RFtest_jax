@@ -59,6 +59,34 @@ himp = rfjax.holdout_rf(
 print(himp["Importance_Table"])
 ```
 
+## Plotting
+
+`rfjax` includes optional matplotlib helpers in `rfjax.plotting`. Install the
+plotting extra with:
+
+```bash
+pip install "rfjax[plot]"
+```
+
+Example usage:
+
+```python
+import matplotlib.pyplot as plt
+import rfjax.plotting as rfp
+
+# Null distribution from a permutation test
+fig, ax = plt.subplots()
+rfp.plot_null_distribution(result, ax=ax)
+plt.show()
+
+# Variable importance side-by-side
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+rfp.plot_importance(imp, kind="SDImp", ax=axes[0])
+rfp.plot_importance(imp, kind="Pval", ax=axes[1])
+plt.tight_layout()
+plt.show()
+```
+
 ## API overview
 
 ### Trees and forests

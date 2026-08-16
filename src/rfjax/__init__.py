@@ -23,3 +23,11 @@ __all__ = [
 ]
 
 __version__ = "0.1.0"
+
+
+def __getattr__(name):
+    """Lazily expose the optional plotting submodule."""
+    if name == "plotting":
+        import rfjax.plotting as _plotting
+        return _plotting
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
